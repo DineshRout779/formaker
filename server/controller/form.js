@@ -59,8 +59,22 @@ const getForm = async (req, res) => {
   }
 };
 
+const getForms = async (req, res) => {
+  try {
+    const forms = await Form.find();
+
+    return res.status(200).json({
+      message: 'Fetched forms successfully',
+      forms,
+    });
+  } catch (error) {
+    return res.status(500).json({ error, message: 'Internal server error' });
+  }
+};
+
 module.exports = {
   createForm,
   editForm,
   getForm,
+  getForms,
 };
