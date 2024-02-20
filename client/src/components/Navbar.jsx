@@ -23,11 +23,11 @@ const Navbar = () => {
         Formaker 🚀
       </h1>
       <button
+        title='Create a new form'
         onClick={createNewForm}
         className='bg-purple-600 flex gap-2 items-center text-white rounded-full hover:shadow-xl p-2 px-6'
       >
-        New Form
-        <Plus size={16} />
+        Create <Plus size={16} />
       </button>
     </div>
   );

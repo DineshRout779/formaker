@@ -15,6 +15,6 @@
 
 @layer base {
   .container-max {
-    @apply max-w-[1200px] mx-auto w-[90%] container;
+    @apply max-w-[1080px] mx-auto w-[90%] container;
   }
 }
