@@ -4,6 +4,7 @@ const {
   createForm,
   getForms,
   editForm,
+  deleteForm,
 } = require('../controller/form');
 
 // Create a new form
@@ -17,5 +18,8 @@ router.get('/', getForms);
 
 // update form
 router.put('/:id', editForm);
+
+// delete form
+router.delete('/:id', deleteForm);
 
 module.exports = router;

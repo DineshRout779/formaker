@@ -1,8 +1,8 @@
 import { useRef } from 'react';
-import InputType from './InputType';
+import AnswerType from './AnswerType';
 
 /* eslint-disable react/prop-types */
-const fieldTypes = ['text', 'paragraph'];
+const fieldTypes = ['text', 'paragraph', 'number', 'email', 'date'];
 
 const Field = ({ field, onFieldChange, index }) => {
   const labelRef = useRef();
@@ -46,7 +46,7 @@ const Field = ({ field, onFieldChange, index }) => {
         </select>
       </div>
       <div className='px-6 my-2'>
-        <InputType type={field?.type} />
+        <AnswerType type={field?.type} />
       </div>{' '}
     </div>
   );

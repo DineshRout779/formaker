@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         element: <EditForm />,
       },
       {
-        path: 'share',
+        path: 'share/:id',
         element: <SharedForm />,
       },
     ],

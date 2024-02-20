@@ -10,6 +10,7 @@ const EditForm = () => {
   const [form, setForm] = useState({
     title: '',
     fields: [],
+    description: '',
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -53,8 +54,7 @@ const EditForm = () => {
 
         setForm((form) => ({
           ...form,
-          title: data.title,
-          fields: data.fields,
+          ...data,
         }));
       } catch (err) {
         console.log(err.response);
@@ -70,7 +70,7 @@ const EditForm = () => {
     };
   }, [id]);
 
-  console.log(form?.fields);
+  // console.log(form);
 
   if (isLoading || !form) {
     return (
@@ -102,6 +102,13 @@ const EditForm = () => {
             />
             <textarea
               title='Form description'
+              value={form.description}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  description: e.target.value,
+                })
+              }
               type='text'
               name='description'
               rows={1}

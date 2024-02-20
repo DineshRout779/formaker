@@ -43,6 +43,22 @@ const editForm = async (req, res) => {
   }
 };
 
+const deleteForm = async (req, res) => {
+  try {
+    await Form.findByIdAndDelete(req.params.id);
+
+    return res.status(200).json({
+      message: 'deleted successfully!',
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: 'Unable to delete',
+      error,
+    });
+  }
+};
+
 const getForm = async (req, res) => {
   try {
     const form = await Form.findById(req.params.id);
@@ -75,6 +91,7 @@ const getForms = async (req, res) => {
 module.exports = {
   createForm,
   editForm,
+  deleteForm,
   getForm,
   getForms,
 };
