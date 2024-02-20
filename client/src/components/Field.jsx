@@ -17,7 +17,7 @@ const Field = ({ field, onFieldChange, index }) => {
   return (
     <div className='p-4 rounded-md bg-purple-50 shadow-md my-4 border border-l-4 border-l-purple-500 border-gray-200'>
       {/* question top */}
-      <div className='flex gap-4 justify-between items-center'>
+      <div className='flex flex-col gap-4 md:flex-row md:justify-between md:items-center'>
         <div className='flex gap-2 items-center grow'>
           <span className='font-semibold w-fit'>{index + 1}.</span>
           <input
@@ -27,14 +27,14 @@ const Field = ({ field, onFieldChange, index }) => {
             value={field.label}
             onChange={() => handleChange(index)}
             ref={labelRef}
-            className='font-semibold p-2 grow'
+            className='font-semibold border rounded-md p-2 grow'
           />
         </div>
 
         <select
           name='type'
           id='type'
-          className='block p-2 rounded-md'
+          className='block p-2 ml-5 border md:ml-0 rounded-md'
           onChange={() => handleChange(index)}
           ref={typeRef}
         >
