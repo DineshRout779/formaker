@@ -20,6 +20,14 @@ const formSchema = new mongoose.Schema({
       },
     },
   ],
+  responses: [
+    {
+      data: {
+        type: Object,
+        required: true,
+      },
+    },
+  ],
 });
 
 const Form = mongoose.model('Form', formSchema);

@@ -5,6 +5,7 @@ const {
   getForms,
   editForm,
   deleteForm,
+  saveResponse,
 } = require('../controller/form');
 
 // Create a new form
@@ -21,5 +22,8 @@ router.put('/:id', editForm);
 
 // delete form
 router.delete('/:id', deleteForm);
+
+// save response after form submission
+router.post('/:id', saveResponse);
 
 module.exports = router;

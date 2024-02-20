@@ -88,10 +88,32 @@ const getForms = async (req, res) => {
   }
 };
 
+const saveResponse = async (req, res) => {
+  try {
+    const form = await Form.findById(req.params.id);
+
+    if (!form) {
+      return res.status(404).json({ message: 'Form not found' });
+    }
+
+    // Add the new response to the responses array
+    form.responses.push({ data: req.body });
+
+    await form.save();
+
+    return res.status(201).json({
+      message: 'Form submitted successfully',
+    });
+  } catch (error) {
+    return res.status(500).json({ error, message: 'Internal server error' });
+  }
+};
+
 module.exports = {
   createForm,
   editForm,
   deleteForm,
   getForm,
   getForms,
+  saveResponse,
 };

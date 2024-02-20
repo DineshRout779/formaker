@@ -3,11 +3,39 @@ import { CircleNotch } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import InputType from '../components/InputType';
+import toast from 'react-hot-toast';
 
 const SharedForm = () => {
   const { id } = useParams();
   const [form, setForm] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData(e.target);
+
+      const formValues = {};
+      formData.forEach((value, key) => {
+        formValues[key] = value;
+      });
+
+      // console.log('Form data submitted:', formValues);
+
+      const res = await axios.post(
+        `http://localhost:3000/api/v1/form/${id}`,
+        formValues
+      );
+
+      if (res.status === 201) {
+        toast.success('Submitted successfully');
+        setIsSubmitted(true);
+      }
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -50,6 +78,21 @@ const SharedForm = () => {
     );
   }
 
+  if (isSubmitted) {
+    return (
+      <div className='bg-[#f0ebf8] min-h-screen py-4'>
+        <div className='container-max max-w-[768px] '>
+          <div className='p-4 shadow-md rounded-md bg-white border border-t-8 border-t-purple-500 border-gray-200'>
+            <h2 className='text-2xl mb-2'>{form?.title}</h2>
+            <p className='text-gray-500'>
+              Your reponses has been received, Thank you.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className='bg-[#f0ebf8] min-h-screen py-4'>
       <div className='container-max max-w-[768px] '>
@@ -60,7 +103,7 @@ const SharedForm = () => {
         </div>
 
         {/* form questions */}
-        <form>
+        <form onSubmit={handleSubmit}>
           {form?.fields?.map((field) => (
             <div
               key={field._id}
@@ -77,12 +120,20 @@ const SharedForm = () => {
               />
             </div>
           ))}
-          <button
-            className='bg-purple-600 text-white p-2 px-4 rounded-md'
-            type='submit'
-          >
-            Submit
-          </button>
+          <div className='flex justify-between items-center'>
+            <button
+              className='bg-purple-600 text-white p-2 px-4 rounded-md'
+              type='submit'
+            >
+              Submit
+            </button>
+            <button
+              className='bg-gray-200 text-gray-900 p-2 px-4 rounded-md'
+              type='reset'
+            >
+              Clear form
+            </button>
+          </div>
         </form>
       </div>
     </div>
