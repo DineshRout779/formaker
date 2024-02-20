@@ -1,5 +1,5 @@
 import { Plus } from 'phosphor-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
@@ -21,9 +21,11 @@ const Navbar = () => {
 
   return (
     <div className='flex py-4 justify-between items-center'>
-      <h1 className='text-2xl font-semibold' title='Formaker Logo'>
-        Formaker 🚀
-      </h1>
+      <Link to='/'>
+        <h1 className='text-2xl font-semibold' title='Formaker Logo'>
+          Formaker 🚀
+        </h1>
+      </Link>
       <button
         title='Create a new form'
         onClick={createNewForm}

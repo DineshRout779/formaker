@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 const FormItem = ({ form, onDelete }) => {
   const navigate = useNavigate();
 
-  const handleShare = () => navigate(`/share/${form._id}`);
+  const handleShare = () => navigate(`/forms/${form._id}/share`);
   const handleDelete = (form) => onDelete(form);
-  const handleEdit = () => navigate(`/edit/${form._id}`);
+  const handleEdit = () => navigate(`/forms/${form._id}/edit`);
 
   return (
     <li
