@@ -45,7 +45,7 @@ const EditForm = () => {
 
     const fetchFormData = async () => {
       try {
-        const response = await axios.put(
+        const response = await axios.get(
           `http://localhost:3000/api/v1/form/${id}`,
           { signal }
         );
@@ -84,8 +84,8 @@ const EditForm = () => {
     <div>
       <EditFormNavbar formId={id} form={form} />
       {/* form */}
-      <section className='container-max max-w-[678px] my-4'>
-        <form>
+      <section className='bg-[#f0ebf8]'>
+        <form className='container-max max-w-[678px] py-4'>
           {/* form header */}
           <div className='p-4 shadow-md rounded-md bg-white border border-t-8 border-t-purple-500 border-gray-200'>
             <input
@@ -131,7 +131,7 @@ const EditForm = () => {
             <button
               onClick={handleAddField}
               type='button'
-              className='border border-purple-600 my-4 flex gap-2 items-center text-purple-600 rounded-full hover:shadow-xl p-2 px-6'
+              className='border border-purple-600 my-4 flex gap-2 items-center text-purple-600 rounded-md hover:shadow-xl p-2 px-6'
             >
               Add field
             </button>
