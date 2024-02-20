@@ -6,6 +6,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Dashboard from './pages/Dashboard.jsx';
 import SharedForm from './pages/SharedForm.jsx';
 import EditForm from './pages/EditForm.jsx';
+import FormResponses from './pages/FormResponses.jsx';
+import FormPage from './pages/FormPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,12 +19,26 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: 'edit/:id',
-        element: <EditForm />,
-      },
-      {
-        path: 'share/:id',
-        element: <SharedForm />,
+        path: 'forms/:id',
+        element: <FormPage />,
+        children: [
+          {
+            index: true,
+            element: <SharedForm />,
+          },
+          {
+            path: 'share',
+            element: <SharedForm />,
+          },
+          {
+            path: 'edit',
+            element: <EditForm />,
+          },
+          {
+            path: 'responses',
+            element: <FormResponses />,
+          },
+        ],
       },
     ],
   },
