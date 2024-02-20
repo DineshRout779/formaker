@@ -12,3 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@layer base {
+  .container-max {
+    @apply max-w-[1200px] mx-auto w-[90%] container;
+  }
+}
