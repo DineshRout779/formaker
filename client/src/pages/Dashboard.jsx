@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { createForm, deleteForm, getAllforms } from '../services/form';
 import { useNavigate } from 'react-router-dom';
 import { CircleNotch } from 'phosphor-react';
+import Logo from '../components/Logo';
 
 const Dashboard = () => {
   const [forms, setForms] = useState([]);
@@ -77,9 +78,7 @@ const Dashboard = () => {
       <div className='container-max'>
         <Navbar />
         <div className='min-h-[80vh] flex justify-center text-center items-center flex-col'>
-          <h1 className='text-2xl font-semibold' title='Formaker Logo'>
-            Formaker 🚀
-          </h1>{' '}
+          <Logo />
           <h1 className='text-4xl md:text-6xl my-8 leading-tight tracking-wide font-extrabold'>
             Create Seamless Forms, Gather Insights
           </h1>

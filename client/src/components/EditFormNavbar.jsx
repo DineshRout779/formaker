@@ -3,6 +3,7 @@ import { Check, CircleNotch, CloudCheck, Eye } from 'phosphor-react';
 import { useCallback, useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { editForm } from '../services/form';
+import Logo from './Logo';
 
 const EditFormNavbar = ({ formId, form, autoSave }) => {
   const navigate = useNavigate();
@@ -39,23 +40,21 @@ const EditFormNavbar = ({ formId, form, autoSave }) => {
     <div>
       <div className='flex py-4 justify-between items-center container-max'>
         <Link to='/'>
-          <h1 className='text-2xl font-semibold' title='Formaker Logo'>
-            Formaker 🚀
-          </h1>
+          <Logo />
         </Link>
         <div className='flex gap-3 items-center'>
           <button
             title='Save form'
             onClick={saveForm}
-            className='flex text-sm items-center gap-2'
+            className='hover:bg-gray-200 text-gray-600 rounded-md p-2 flex text-sm md:text-base items-center gap-2'
           >
-            Saved
+            <span className='hidden md:block'></span>
             {isLoading ? (
               <span className='animate-spin font-medium'>
-                <CircleNotch size={16} />
+                <CircleNotch size={24} />
               </span>
             ) : (
-              <CloudCheck size={16} weight='bold' />
+              <CloudCheck size={24} weight='bold' />
             )}
           </button>
 
@@ -63,7 +62,7 @@ const EditFormNavbar = ({ formId, form, autoSave }) => {
             title='Preview'
             to={`/forms/${form._id}/share`}
             target='_blank'
-            className='hover:bg-gray-200 font-medium  flex gap-2 items-center text-gray-600 rounded-md p-2 md:px-6 '
+            className='hover:bg-gray-200 font-medium flex gap-2 items-center text-gray-600 rounded-md p-2 md:px-6 '
           >
             <span className='hidden md:block'>Preview</span>{' '}
             <Eye size={24} weight='bold' />
@@ -72,7 +71,7 @@ const EditFormNavbar = ({ formId, form, autoSave }) => {
           <button
             title='Finish'
             onClick={() => navigate(`/`)}
-            className='bg-purple-600 font-medium border border-purple-600 flex gap-2 items-center text-white rounded-full hover:shadow-xl p-2 px-6'
+            className='bg-purple-600 text-xs md:text-base font-medium border border-purple-600 flex gap-2 items-center text-white rounded-full hover:shadow-xl p-2 px-6'
           >
             Done <Check size={16} weight='bold' />
           </button>
