@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import axios from 'axios';
-import { Check, CircleNotch } from 'phosphor-react';
+import { Check, CircleNotch, CloudCheck, Eye } from 'phosphor-react';
 import { useCallback, useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { editForm } from '../services/form';
 
 const EditFormNavbar = ({ formId, form, autoSave }) => {
   const navigate = useNavigate();
@@ -11,10 +11,7 @@ const EditFormNavbar = ({ formId, form, autoSave }) => {
   const saveForm = useCallback(async () => {
     try {
       setIsLoading(true);
-      const res = await axios.put(
-        `http://localhost:3000/api/v1/form/${formId}`,
-        form
-      );
+      const res = await editForm(formId, form);
 
       console.log(res);
     } catch (error) {
@@ -46,7 +43,7 @@ const EditFormNavbar = ({ formId, form, autoSave }) => {
             Formaker 🚀
           </h1>
         </Link>
-        <div className='flex gap-4 items-center'>
+        <div className='flex gap-3 items-center'>
           <button
             title='Save form'
             onClick={saveForm}
@@ -54,18 +51,29 @@ const EditFormNavbar = ({ formId, form, autoSave }) => {
           >
             Saved
             {isLoading ? (
-              <span className='animate-spin'>
+              <span className='animate-spin font-medium'>
                 <CircleNotch size={16} />
               </span>
             ) : (
-              <Check size={16} />
+              <CloudCheck size={16} weight='bold' />
             )}
           </button>
-          <button
-            onClick={() => navigate(`/`)}
-            className='bg-purple-600 flex gap-2 items-center text-white rounded-full hover:shadow-xl p-2 px-6'
+
+          <Link
+            title='Preview'
+            to={`/forms/${form._id}/share`}
+            target='_blank'
+            className='bg-white font-medium border border-purple-600 flex gap-2 items-center text-purple-600 rounded-full hover:shadow-xl p-2 px-6'
           >
-            Done
+            Preview <Eye size={16} weight='bold' />
+          </Link>
+
+          <button
+            title='Finish'
+            onClick={() => navigate(`/`)}
+            className='bg-purple-600 font-medium border border-purple-600 flex gap-2 items-center text-white rounded-full hover:shadow-xl p-2 px-6'
+          >
+            Done <Check size={16} weight='bold' />
           </button>
         </div>
       </div>
