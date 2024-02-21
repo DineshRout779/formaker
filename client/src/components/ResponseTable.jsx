@@ -30,7 +30,7 @@ const ResponseTable = ({ form }) => {
                       </td>
                       {Object.values(response.data).map((value, j) => (
                         <td className='whitespace-nowrap px-6 py-4' key={j}>
-                          {value}
+                          {value ? value : '-'}
                         </td>
                       ))}
                     </tr>

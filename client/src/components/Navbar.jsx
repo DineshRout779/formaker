@@ -1,14 +1,14 @@
 import { Plus } from 'phosphor-react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import toast from 'react-hot-toast';
+import { createForm } from '../services/form';
 
 const Navbar = () => {
   const navigate = useNavigate();
 
   const createNewForm = async () => {
     try {
-      const res = await axios.post(`http://localhost:3000/api/v1/form`);
+      const res = await createForm();
 
       if (res.status === 201) {
         toast.success('Form created');
