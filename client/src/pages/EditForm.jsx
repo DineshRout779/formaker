@@ -1,9 +1,9 @@
-import axios from 'axios';
-import { CircleNotch } from 'phosphor-react';
+import { CircleNotch, Plus } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import EditFormNavbar from '../components/EditFormNavbar';
 import Field from '../components/Field';
+import { getForm } from '../services/form';
 
 const EditForm = () => {
   const { id } = useParams();
@@ -25,6 +25,23 @@ const EditForm = () => {
         },
       ],
     });
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    }, 0);
+  };
+
+  const handleRemoveField = (index) => {
+    const updatedFields = [...form.fields];
+
+    updatedFields.splice(index, 1);
+
+    setForm({
+      ...form,
+      fields: updatedFields,
+    });
   };
 
   const updateField = (index, updatedField) => {
@@ -45,10 +62,7 @@ const EditForm = () => {
 
     const fetchFormData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/v1/form/${id}`,
-          { signal }
-        );
+        const response = await getForm(id, signal);
 
         const data = response.data.form;
 
@@ -84,12 +98,13 @@ const EditForm = () => {
     <div>
       <EditFormNavbar formId={id} form={form} autoSave={true} />
       {/* form */}
-      <section className='bg-[#f0ebf8]'>
+      <section className='bg-[#f0ebf8] min-h-[85vh]'>
         <form className='container-max max-w-[678px] py-4'>
           {/* form header */}
           <div className='p-4 shadow-md rounded-md bg-white border border-t-8 border-t-purple-500 border-gray-200'>
             <input
               type='text'
+              autoFocus
               title='Form title'
               className='outline-none border-b border-b-transparent py-2 focus-visible:border-b-slate-300 w-full bg-transparent text-xl my-2  font-semibold'
               value={form?.title}
@@ -126,14 +141,16 @@ const EditForm = () => {
                 index={i}
                 field={field}
                 onFieldChange={updateField}
+                onRemove={handleRemoveField}
               />
             ))}
             <button
               onClick={handleAddField}
               type='button'
-              className='border border-purple-600 my-4 flex gap-2 items-center text-purple-600 rounded-md hover:shadow-xl p-2 px-6'
+              title='Add another field'
+              className='fixed right-4 bottom-4 shadow-2xl shadow-slate-900 border bg-white my-4 flex gap-2 items-center text-zinc-700 rounded-full  p-2 font-bold'
             >
-              Add field
+              <Plus size={32} weight='bold' />
             </button>
           </div>
         </form>
