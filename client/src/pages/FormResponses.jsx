@@ -55,8 +55,6 @@ const FormResponses = () => {
     };
   }, [id]);
 
-  console.log(form);
-
   if (isLoading || !form) {
     return (
       <div className='flex justify-center items-center min-h-screen'>
