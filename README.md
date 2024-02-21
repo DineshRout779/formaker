@@ -14,7 +14,8 @@ A typeform application that helps users create forms seamlessly.
 
 ## Features
 
-- Create forms
+- Create, edit, delete forms
+- Autosave changes
 - Share form
 - Get responses from users
 - Control form submission
