@@ -74,35 +74,38 @@ const Dashboard = () => {
 
   if (forms.length === 0) {
     return (
-      <div className='min-h-[80vh] flex justify-center text-center items-center flex-col'>
-        <h1 className='text-2xl font-semibold' title='Formaker Logo'>
-          Formaker 🚀
-        </h1>{' '}
-        <h1 className='text-6xl my-8 leading-tight tracking-wide font-extrabold'>
-          Create Seamless Forms, Gather Insights
-        </h1>
-        <div className='flex font-medium items-center gap-2'>
-          <button className='w-[150px] bg-white border-2 border-purple-500 text-purple-500 flex gap-2 items-center justify-center tracking-wider rounded-full hover:shadow-xl p-2 px-6'>
-            Learn more
-          </button>
-          <button
-            onClick={createNewForm}
-            className='w-[150px] bg-purple-500 border-2 border-purple-500 text-white flex gap-2 items-center justify-center tracking-wider rounded-full hover:shadow-xl p-2 px-6'
-          >
-            Try it
-          </button>
+      <div className='container-max'>
+        <Navbar />
+        <div className='min-h-[80vh] flex justify-center text-center items-center flex-col'>
+          <h1 className='text-2xl font-semibold' title='Formaker Logo'>
+            Formaker 🚀
+          </h1>{' '}
+          <h1 className='text-4xl md:text-6xl my-8 leading-tight tracking-wide font-extrabold'>
+            Create Seamless Forms, Gather Insights
+          </h1>
+          <div className='flex font-medium items-center gap-2'>
+            <button className='w-[150px] bg-white border-2 border-purple-500 text-purple-500 flex gap-2 items-center justify-center tracking-wider rounded-full hover:shadow-xl p-2 px-6'>
+              Learn more
+            </button>
+            <button
+              onClick={createNewForm}
+              className='w-[150px] bg-purple-500 border-2 border-purple-500 text-white flex gap-2 items-center justify-center tracking-wider rounded-full hover:shadow-xl p-2 px-6'
+            >
+              Try it
+            </button>
+          </div>
+          <p className='fixed bottom-0 mx-auto py-4'>
+            Made by{' '}
+            <a
+              className='text-purple-500'
+              target='_blank'
+              rel='noreferrer'
+              href='https://github.com/DineshRout779'
+            >
+              Dinesh Rout
+            </a>
+          </p>
         </div>
-        <p className='fixed bottom-0 mx-auto py-4'>
-          Made by{' '}
-          <a
-            className='text-purple-500'
-            target='_blank'
-            rel='noreferrer'
-            href='https://github.com/DineshRout779'
-          >
-            Dinesh Rout
-          </a>
-        </p>
       </div>
     );
   }
