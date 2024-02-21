@@ -1,10 +1,11 @@
 import { useRef } from 'react';
 import AnswerType from './AnswerType';
+import { Trash } from 'phosphor-react';
 
 /* eslint-disable react/prop-types */
 const fieldTypes = ['text', 'paragraph', 'number', 'email', 'date'];
 
-const Field = ({ field, onFieldChange, index }) => {
+const Field = ({ field, onFieldChange, index, onRemove }) => {
   const labelRef = useRef();
   const typeRef = useRef();
 
@@ -23,6 +24,7 @@ const Field = ({ field, onFieldChange, index }) => {
           <input
             type='text'
             name='label'
+            title='Field label'
             id='label'
             value={field.label}
             onChange={() => handleChange(index)}
@@ -31,23 +33,35 @@ const Field = ({ field, onFieldChange, index }) => {
           />
         </div>
 
-        <select
-          name='type'
-          id='type'
-          className='block p-2 ml-5 border md:ml-0 rounded-md'
-          onChange={() => handleChange(index)}
-          ref={typeRef}
-        >
-          {fieldTypes.map((fieldType, i) => (
-            <option key={i} value={fieldType}>
-              {fieldType}
-            </option>
-          ))}
-        </select>
+        <div className='flex items-center gap-2'>
+          <select
+            name='type'
+            id='type'
+            title='Field input type'
+            className='block grow p-2 ml-5 border md:ml-0 rounded-md'
+            onChange={() => handleChange(index)}
+            ref={typeRef}
+          >
+            {fieldTypes.map((fieldType, i) => (
+              <option key={i} value={fieldType}>
+                {fieldType}
+              </option>
+            ))}
+          </select>
+
+          <button
+            type='button'
+            title='Remove field'
+            onClick={() => onRemove(index)}
+            className='p-2 bg-white hover:bg-red-400 hover:text-white border rounded-md'
+          >
+            <Trash size={24} />
+          </button>
+        </div>
       </div>
-      <div className='px-6 my-2'>
+      <div className='px-6 my-4'>
         <AnswerType type={field?.type} />
-      </div>{' '}
+      </div>
     </div>
   );
 };
