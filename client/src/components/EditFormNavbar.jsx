@@ -11,9 +11,9 @@ const EditFormNavbar = ({ formId, form, autoSave }) => {
   const saveForm = useCallback(async () => {
     try {
       setIsLoading(true);
-      const res = await editForm(formId, form);
+      await editForm(formId, form);
 
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       console.log(error.response);
     } finally {
@@ -63,9 +63,10 @@ const EditFormNavbar = ({ formId, form, autoSave }) => {
             title='Preview'
             to={`/forms/${form._id}/share`}
             target='_blank'
-            className='bg-white font-medium border border-purple-600 flex gap-2 items-center text-purple-600 rounded-full hover:shadow-xl p-2 px-6'
+            className='hover:bg-gray-200 font-medium  flex gap-2 items-center text-gray-600 rounded-md p-2 md:px-6 '
           >
-            Preview <Eye size={16} weight='bold' />
+            <span className='hidden md:block'>Preview</span>{' '}
+            <Eye size={24} weight='bold' />
           </Link>
 
           <button

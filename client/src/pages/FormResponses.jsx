@@ -15,11 +15,11 @@ const FormResponses = () => {
 
   const saveForm = async (status) => {
     try {
-      const res = await editForm(id, {
+      await editForm(id, {
         ...form,
         acceptingResponses: status,
       });
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       console.log(error.response);
     }
