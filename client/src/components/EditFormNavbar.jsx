@@ -36,6 +36,8 @@ const EditFormNavbar = ({ formId, form, autoSave }) => {
     }
   }, [autoSave, form, formId, saveForm]);
 
+  // console.log('f: ', form);
+
   return (
     <div>
       <div className='flex py-4 justify-between items-center container-max'>
@@ -67,7 +69,7 @@ const EditFormNavbar = ({ formId, form, autoSave }) => {
           </button>
         </div>
       </div>
-      <div className='flex justify-center items-center'>
+      <div className='flex text-sm justify-center items-center'>
         <NavLink
           className={({ isActive }) =>
             isActive
@@ -86,7 +88,7 @@ const EditFormNavbar = ({ formId, form, autoSave }) => {
           }
           to={`/forms/${formId}/responses`}
         >
-          Responses
+          Responses ({form?.responses ? form.responses.length : null})
         </NavLink>
       </div>
     </div>
