@@ -10,6 +10,7 @@ const SharedForm = () => {
   const [form, setForm] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isAcceptingResponse, setIsAcceptingResponse] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,6 +55,8 @@ const SharedForm = () => {
           ...form,
           ...data,
         }));
+
+        setIsAcceptingResponse(data.acceptingResponses);
       } catch (err) {
         console.log(err.response);
       } finally {
@@ -68,12 +71,29 @@ const SharedForm = () => {
     };
   }, [id]);
 
-  // console.log(form);
+  // console.log(isAcceptingResponse);
 
   if (isLoading || !form) {
     return (
       <div className='flex justify-center items-center min-h-screen'>
         <CircleNotch size={32} className='text-purple-600 animate-spin' />
+      </div>
+    );
+  }
+
+  if (!isAcceptingResponse) {
+    return (
+      <div className='bg-[#f0ebf8] min-h-screen py-4'>
+        <div className='container-max max-w-[768px] '>
+          <div className='p-4 shadow-md rounded-md bg-white border border-t-8 border-t-purple-500 border-gray-200'>
+            <h2 className='text-2xl mb-2'>{form?.title}</h2>
+            <p className='text-gray-500 text-sm'>
+              The form {form?.title} is no longer accepting responses. <br />
+              Try contacting the owner of the form if you think this is a
+              mistake.{' '}
+            </p>
+          </div>
+        </div>
       </div>
     );
   }

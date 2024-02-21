@@ -82,7 +82,7 @@ const EditForm = () => {
 
   return (
     <div>
-      <EditFormNavbar formId={id} form={form} />
+      <EditFormNavbar formId={id} form={form} autoSave={true} />
       {/* form */}
       <section className='bg-[#f0ebf8]'>
         <form className='container-max max-w-[678px] py-4'>

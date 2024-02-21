@@ -28,6 +28,10 @@ const formSchema = new mongoose.Schema({
       },
     },
   ],
+  acceptingResponses: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const Form = mongoose.model('Form', formSchema);
