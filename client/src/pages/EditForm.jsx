@@ -126,7 +126,6 @@ const EditForm = () => {
               }
               type='text'
               name='description'
-              rows={1}
               id='description'
               placeholder='Form description'
               className='outline-none border-b border-b-transparent py-2 focus:border-b-slate-300 w-full resize-y bg-transparent'
