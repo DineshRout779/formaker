@@ -12,7 +12,7 @@ const Navbar = () => {
 
       if (res.status === 201) {
         toast.success('Form created');
-        navigate(`/edit/${res.data.form._id}`);
+        navigate(`/forms/${res.data.form._id}/edit`);
       }
     } catch (error) {
       console.log(error.response);
