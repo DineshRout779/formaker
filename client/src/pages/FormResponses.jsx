@@ -2,11 +2,10 @@ import { useParams } from 'react-router-dom';
 import EditFormNavbar from '../components/EditFormNavbar';
 import { CircleNotch, Rows, Table } from 'phosphor-react';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Switch from '../components/Switch';
 import ResponseTable from '../components/ResponseTable';
 import ResponseRows from '../components/ResponseRows';
-import { editForm } from '../services/form';
+import { editForm, getForm } from '../services/form';
 
 const FormResponses = () => {
   const { id } = useParams();
@@ -32,10 +31,7 @@ const FormResponses = () => {
 
     const fetchFormData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/v1/form/${id}`,
-          { signal }
-        );
+        const response = await getForm(id, signal);
 
         const data = response.data.form;
 
