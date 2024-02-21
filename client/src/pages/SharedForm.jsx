@@ -1,9 +1,9 @@
-import axios from 'axios';
 import { CircleNotch } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import InputType from '../components/InputType';
 import toast from 'react-hot-toast';
+import { getForm, submitForm } from '../services/form';
 
 const SharedForm = () => {
   const { id } = useParams();
@@ -24,10 +24,7 @@ const SharedForm = () => {
 
       // console.log('Form data submitted:', formValues);
 
-      const res = await axios.post(
-        `http://localhost:3000/api/v1/form/${id}`,
-        formValues
-      );
+      const res = await submitForm(id, formValues);
 
       if (res.status === 201) {
         toast.success('Submitted successfully');
@@ -44,18 +41,12 @@ const SharedForm = () => {
 
     const fetchFormData = async () => {
       try {
-        const response = await axios.put(
-          `http://localhost:3000/api/v1/form/${id}`,
-          { signal }
-        );
-
+        const response = await getForm(id, signal);
         const data = response.data.form;
-
         setForm((form) => ({
           ...form,
           ...data,
         }));
-
         setIsAcceptingResponse(data.acceptingResponses);
       } catch (err) {
         console.log(err.response);
